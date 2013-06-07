@@ -77,12 +77,13 @@ def format_arg_value(arg_val):
     arg, val = arg_val
     return "%s=%r" % (arg, val)
 
-def echo(fn):
+# parameter arg_len add by zz_d, 2013-06-07
+def echo(fn, arg_len=30):
     """ Echo calls to a function.
 
     Returns a decorated version of the input function which "echoes" calls
     made to it by writing out the function's name and the arguments it was
-    called with.
+    called with, and you can limit the length of the arguments' output.
     """
     import functools
     # Unpack function's arg count, arg names, arg defaults
@@ -96,11 +97,21 @@ def echo(fn):
     def wrapped(*v, **k):
         # Collect function arguments by chaining together positional,
         # defaulted, extra positional and keyword arguments.
-        positional = map(format_arg_value, zip(argnames, v))
+        ex_v = []
+        for e in v:
+            ex_v.append(('%r' % e)[:arg_len])
+        ex_v = tuple(ex_v)
+        
+        ex_k = {}
+        for e in k:
+            ex_k[e] = ('%r' % k[e])[:arg_len]
+            
+        positional = map(format_arg_value, zip(argnames, ex_v))
         defaulted = [format_arg_value((a, argdefs[a]))
-                     for a in argnames[len(v):] if a not in k]
-        nameless = map(repr, v[argcount:])
-        keyword = map(format_arg_value, k.items())
+                     for a in argnames[len(ex_v):] if a not in k]
+        nameless = map(repr, ex_v[argcount:])
+        
+        keyword = map(format_arg_value, ex_k.items())
         args = positional + defaulted + nameless + keyword
         write("%s(%s)" % (name(fn), ", ".join(args)))
         return fn(*v, **k)

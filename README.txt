@@ -1,13 +1,12 @@
-Ô­À´µÄ README ²Î¼û README.orig.txt
+ï»¿
+å°†åŸæ¥çš„ echo(fn) æ”¹ä¸º echo(fn, arg_len=30), 
+å¯¹è·Ÿè¸ªè¾“å‡ºçš„å‚æ•°é•¿åº¦åŠ ä»¥é™åˆ¶,
+ä»¥é¿å…è¾“å‡ºå¤ªé•¿çš„å‚æ•°.
 
-Õâ¸öÔÚÔ­À´µÄ»ù´¡ÉÏÔö¼ÓÁËÁ½¸ö²ÎÊıµÄ¶¨ÖÆ£º
 
-    echo Ä£¿é
-        setup(write, method)
 
-Ê¹ÓÃÀı×Ó(Ê¹ÓÃÔÚ Twisted ÖĞ)£º
-
-    from twisted.python import log
-	import echo
-	
-	echo.setup(log.msg, '')
+åŸæ¥çš„ README å‚è§ README.orig.txt, README.orig2.txt
+ç›¸å…³é“¾æ¥:
+	http://wordaligned.org/articles/echo#tocsource-code
+	https://github.com/huyx/echoit
+	http://blog.sina.com.cn/s/blog_6262a50e0101115d.html
